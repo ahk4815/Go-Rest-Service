@@ -1,18 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
+
+	EmployeeController "github.com/ahk4815/Go-Rest-Service/Controller"
 )
 
-func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the HomePage!")
-	fmt.Println("Endpoint Hit: homePage")
-}
-
 func handleRequests() {
-	http.HandleFunc("/", homePage)
+	http.HandleFunc("/", EmployeeController.HomePage)
+	http.HandleFunc("/employee", EmployeeController.GetAllEmployees)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
